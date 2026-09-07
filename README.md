@@ -21,6 +21,11 @@
 7. [`docs/06-PHASES-AND-RUNBOOKS.md`](docs/06-PHASES-AND-RUNBOOKS.md) — the schedule with exit gates; `docs/runbooks/` for the operational procedures.
 8. [`docs/07-HARDWARE-AND-LICENSING.md`](docs/07-HARDWARE-AND-LICENSING.md) — bill of materials, Windows and SQL licensing.
 9. [`docs/08-OPEN-QUESTIONS.md`](docs/08-OPEN-QUESTIONS.md) — decisions still needed from the owner.
+10. **[`docs/09-VALIDATION-STATUS.md`](docs/09-VALIDATION-STATUS.md) — what is actually tested and what is not. Read this before trusting any of the above.**
+
+## Before you buy anything
+
+Run [`docs/runbooks/boot-01-day-one.md`](docs/runbooks/boot-01-day-one.md): a five-day lab on one spare machine that tests the three assumptions most likely to be wrong. It costs a Windows evaluation licence and a week. Ordering hardware first risks $85–110k against an untested design.
 
 ## Repository layout
 

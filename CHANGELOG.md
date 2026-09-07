@@ -2,6 +2,20 @@
 
 All notable changes to the ZD Cloud plan and platform. Dated, with the reason, because a platform whose history nobody can explain is a platform nobody can safely change.
 
+## [0.1.1] — 2026-09-08
+
+### Added
+- `docs/09-VALIDATION-STATUS.md` — confidence level for every claim in the repository, plus a ten-entry register of the assumptions most likely to be wrong.
+- `docs/runbooks/boot-01-day-one.md` — a five-day lab on one spare machine that falsifies the three riskiest assumptions before hardware is ordered.
+
+### Verified
+- All 8 `platform/` YAML and JSON files parse.
+- `apps/mills/app.yaml` validates against `schemas/app.schema.json`.
+- The schema's inline-secret rule was negative-tested and does reject `password=` values in `env`.
+
+### Note
+- Nothing else in this repository has been executed. The plan was written without access to Windows Server or hardware.
+
 ## [0.1.0] — 2026-09-08
 
 ### Added
