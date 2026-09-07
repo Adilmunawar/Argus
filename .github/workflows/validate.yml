@@ -1,0 +1,75 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gitops:
+    name: GitOps schema and secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install pyyaml jsonschema
+      - name: Every YAML and JSON parses
+        run: |
+          python - <<'PY'
+          import sys, json, pathlib, yaml
+          bad = 0
+          for p in pathlib.Path('platform').rglob('*'):
+              try:
+                  if p.suffix in ('.yaml', '.yml'):
+                      list(yaml.safe_load_all(p.read_text()))
+                  elif p.suffix == '.json':
+                      json.loads(p.read_text())
+                  else:
+                      continue
+              except Exception as e:
+                  print(f'FAIL {p}: {e}'); bad += 1
+              else:
+                  print(f'  ok {p}')
+          sys.exit(bad)
+          PY
+      - name: Application specs validate against the schema
+        run: |
+          python - <<'PY'
+          import sys, json, pathlib, yaml, jsonschema
+          schema = json.load(open('platform/gitops/schemas/app.schema.json'))
+          bad = 0
+          for p in pathlib.Path('platform/gitops/apps').rglob('app.yaml'):
+              try:
+                  jsonschema.validate(yaml.safe_load(p.read_text()), schema)
+                  print(f'  ok {p}')
+              except jsonschema.ValidationError as e:
+                  print(f'FAIL {p}: {e.message}'); bad += 1
+          sys.exit(bad)
+          PY
+      - name: No secrets committed
+        run: |
+          if grep -rInE '(ghp_[A-Za-z0-9]{20,}|sk-ant-[A-Za-z0-9-]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----|[Pp]assword\s*=\s*[^{$"< ][^;"]{5,})' \
+              --exclude-dir=.git --exclude='validate.yml' . ; then
+            echo "::error::A credential-shaped string is present. Remove it and rotate the credential."
+            exit 1
+          fi
+          echo "clean"
+
+  console:
+    name: Console prototype tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: npm install -g playwright axe-core && npx playwright install --with-deps chromium
+      - name: No external requests in the console bundle
+        run: |
+          if grep -nE 'https?://(fonts\.googleapis|fonts\.gstatic|cdn\.|unpkg|jsdelivr)' platform/console/prototype/index.html; then
+            echo "::error::The console runs behind an egress allow-list (ADR-0027) and must not fetch anything."
+            exit 1
+          fi
+          echo "clean"
+      - name: Accessibility, responsive, density and keyboard suite
+        run: node platform/console/prototype/tests/run-tests.js
