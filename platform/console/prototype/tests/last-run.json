@@ -1,0 +1,308 @@
+[
+  {
+    "suite": "NAV",
+    "id": "target \"overview\" has a page",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "NAV",
+    "id": "target \"apps\" has a page",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "NAV",
+    "id": "target \"deploys\" has a page",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "NAV",
+    "id": "target \"compute\" has a page",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "NAV",
+    "id": "target \"data\" has a page",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "NAV",
+    "id": "target \"identity\" has a page",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "NAV",
+    "id": "target \"security\" has a page",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "NAV",
+    "id": "target \"ops\" has a page",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "NAV",
+    "id": "target \"audit\" has a page",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "NAV",
+    "id": "\"overview\" shows exactly one page",
+    "pass": true,
+    "detail": "visible: overview"
+  },
+  {
+    "suite": "NAV",
+    "id": "\"overview\" updates the breadcrumb",
+    "pass": true,
+    "detail": "crumb=\"Overview\""
+  },
+  {
+    "suite": "NAV",
+    "id": "\"apps\" shows exactly one page",
+    "pass": true,
+    "detail": "visible: apps"
+  },
+  {
+    "suite": "NAV",
+    "id": "\"apps\" updates the breadcrumb",
+    "pass": true,
+    "detail": "crumb=\"Applications\""
+  },
+  {
+    "suite": "NAV",
+    "id": "\"deploys\" shows exactly one page",
+    "pass": true,
+    "detail": "visible: deploys"
+  },
+  {
+    "suite": "NAV",
+    "id": "\"deploys\" updates the breadcrumb",
+    "pass": true,
+    "detail": "crumb=\"Deployments\""
+  },
+  {
+    "suite": "NAV",
+    "id": "\"compute\" shows exactly one page",
+    "pass": true,
+    "detail": "visible: compute"
+  },
+  {
+    "suite": "NAV",
+    "id": "\"compute\" updates the breadcrumb",
+    "pass": true,
+    "detail": "crumb=\"Compute\""
+  },
+  {
+    "suite": "NAV",
+    "id": "\"data\" shows exactly one page",
+    "pass": true,
+    "detail": "visible: data"
+  },
+  {
+    "suite": "NAV",
+    "id": "\"data\" updates the breadcrumb",
+    "pass": true,
+    "detail": "crumb=\"Data\""
+  },
+  {
+    "suite": "NAV",
+    "id": "\"security\" shows exactly one page",
+    "pass": true,
+    "detail": "visible: security"
+  },
+  {
+    "suite": "NAV",
+    "id": "\"security\" updates the breadcrumb",
+    "pass": true,
+    "detail": "crumb=\"Security\""
+  },
+  {
+    "suite": "NAV",
+    "id": "\"identity\" shows exactly one page",
+    "pass": true,
+    "detail": "visible: identity"
+  },
+  {
+    "suite": "NAV",
+    "id": "\"identity\" updates the breadcrumb",
+    "pass": true,
+    "detail": "crumb=\"Identity & secrets\""
+  },
+  {
+    "suite": "NAV",
+    "id": "\"ops\" shows exactly one page",
+    "pass": true,
+    "detail": "visible: ops"
+  },
+  {
+    "suite": "NAV",
+    "id": "\"ops\" updates the breadcrumb",
+    "pass": true,
+    "detail": "crumb=\"Operations\""
+  },
+  {
+    "suite": "NAV",
+    "id": "\"audit\" shows exactly one page",
+    "pass": true,
+    "detail": "visible: audit"
+  },
+  {
+    "suite": "NAV",
+    "id": "\"audit\" updates the breadcrumb",
+    "pass": true,
+    "detail": "crumb=\"Audit\""
+  },
+  {
+    "suite": "A11Y",
+    "id": "overview: no WCAG A/AA violations",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "A11Y",
+    "id": "apps: no WCAG A/AA violations",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "A11Y",
+    "id": "deploys: no WCAG A/AA violations",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "A11Y",
+    "id": "compute: no WCAG A/AA violations",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "A11Y",
+    "id": "data: no WCAG A/AA violations",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "A11Y",
+    "id": "security: no WCAG A/AA violations",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "A11Y",
+    "id": "identity: no WCAG A/AA violations",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "A11Y",
+    "id": "ops: no WCAG A/AA violations",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "A11Y",
+    "id": "audit: no WCAG A/AA violations",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "KBD",
+    "id": "focusable elements exist on Overview",
+    "pass": true,
+    "detail": "25 found"
+  },
+  {
+    "suite": "KBD",
+    "id": "no click handler on a non-focusable element",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "KBD",
+    "id": "every tab stop shows a focus indicator",
+    "pass": true,
+    "detail": "25 tab stops checked"
+  },
+  {
+    "suite": "CON",
+    "id": "all text meets WCAG AA contrast",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "TXT",
+    "id": "no text below 11px",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "TXT",
+    "id": "no clipped text",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "MOTION",
+    "id": "reduced-motion stops all animation",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "RESP",
+    "id": "desktop (1440px) no horizontal overflow",
+    "pass": true,
+    "detail": "scrollWidth 1440 vs 1440"
+  },
+  {
+    "suite": "RESP",
+    "id": "laptop (1024px) no horizontal overflow",
+    "pass": true,
+    "detail": "scrollWidth 1024 vs 1024 — TABLE → 1093px | TBODY → 1093px | TR → 1093px | st → 1093px | pill ok → 1077px | pill ok → 1033px"
+  },
+  {
+    "suite": "RESP",
+    "id": "tablet (768px) no horizontal overflow",
+    "pass": true,
+    "detail": "scrollWidth 768 vs 768"
+  },
+  {
+    "suite": "TAP",
+    "id": "tablet touch targets >= 24px",
+    "pass": true,
+    "detail": "0 too small: "
+  },
+  {
+    "suite": "RESP",
+    "id": "phone (390px) no horizontal overflow",
+    "pass": true,
+    "detail": "scrollWidth 390 vs 390 — TABLE → 553px | TBODY → 553px | TR → 553px | TD → 461px | st → 553px | link → 534px"
+  },
+  {
+    "suite": "TAP",
+    "id": "phone touch targets >= 24px",
+    "pass": true,
+    "detail": "0 too small: "
+  },
+  {
+    "suite": "CONS",
+    "id": "no console errors",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "suite": "CONS",
+    "id": "no failed requests (fonts excluded — offline sandbox)",
+    "pass": true,
+    "detail": ""
+  }
+]
