@@ -1,0 +1,11 @@
+# secrets never live here — they live in OpenBao; references only
+*.pfx
+*.pem
+*.key
+appsettings.Local.json
+.env
+*.sfpkg
+node_modules/
+bin/
+obj/
+.next/
