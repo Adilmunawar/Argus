@@ -2,6 +2,19 @@
 
 All notable changes to the ZD Cloud plan and platform. Dated, with the reason, because a platform whose history nobody can explain is a platform nobody can safely change.
 
+## [0.2.0] — 2026-09-08
+
+### Added
+- `docs/10-CONSOLE-DESIGN.md` — the AWS Console studied as nine repeating patterns, each mapped to a ZD Cloud screen; nine console sections specified screen by screen; interaction rules; the Mills design system inherited with three console-only components; a six-stage build order where each stage retires a named existing tool.
+- **ADR-0032** — browser RDP/SSH/VM-console via Apache Guacamole. Credential-less (OpenBao issues a one-time, session-scoped credential the operator never sees), time-boxed, fully recorded to the object-locked `zd-sessions` bucket, clipboard and file transfer gated by role.
+- **ADR-0033** — the console is the primary surface; Windows Admin Center becomes bootstrap and break-glass only, retired at console stage C6. Grafana explicitly stays.
+- `platform/console/prototype/index.html` — a static, clickable prototype of six screens using the Mills tokens, so the design can be argued with before any C# is written.
+- `zd-sessions` bucket and `gmsa-guacamole$` added to the GitOps inventory; risk **A11** (Guacamole recording + AD auth + OpenBao credentials on Server 2025) added to the register and to the day-one lab.
+
+### Changed
+- **ADR-0003 amended in place**: three Linux exceptions, not two — `gpu-01`, `siem-01`, and now `guac-01`.
+- The control-plane assumption that operators reach servers with an RDP client over the VPN is withdrawn. It meant typed credentials, standing access and no record of what happened inside a session, which contradicted the platform's own security case.
+
 ## [0.1.1] — 2026-09-08
 
 ### Added

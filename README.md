@@ -22,6 +22,7 @@
 8. [`docs/07-HARDWARE-AND-LICENSING.md`](docs/07-HARDWARE-AND-LICENSING.md) — bill of materials, Windows and SQL licensing.
 9. [`docs/08-OPEN-QUESTIONS.md`](docs/08-OPEN-QUESTIONS.md) — decisions still needed from the owner.
 10. **[`docs/09-VALIDATION-STATUS.md`](docs/09-VALIDATION-STATUS.md) — what is actually tested and what is not. Read this before trusting any of the above.**
+11. [`docs/10-CONSOLE-DESIGN.md`](docs/10-CONSOLE-DESIGN.md) — the web console: every screen, including browser RDP. Open [`platform/console/prototype/index.html`](platform/console/prototype/index.html) in a browser to see it.
 
 ## Before you buy anything
 
