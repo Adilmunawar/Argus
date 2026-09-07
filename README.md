@@ -1,11 +1,38 @@
+<div align="center">
+
 # ZD Cloud
 
-**Zaraat Dost's sovereign, Windows-first private cloud.** The plan, the decisions, the map, and the control plane for replacing AWS with hardware we own.
+**A sovereign, Windows-first private cloud — the complete design record for replacing AWS with hardware you own.**
+
+[![validate](https://github.com/Adilmunawar/zd-cloud/actions/workflows/validate.yml/badge.svg)](https://github.com/Adilmunawar/zd-cloud/actions/workflows/validate.yml)
+[![console tests](https://img.shields.io/badge/console%20tests-65%2F65-046c4e)](platform/console/prototype/tests/run-tests.js)
+[![ADRs](https://img.shields.io/badge/ADRs-33-1e6f4a)](docs/01-DECISIONS.md)
+[![licence](https://img.shields.io/badge/licence-MIT-113a2b)](LICENSE)
+[![status](https://img.shields.io/badge/status-planning%20%C2%B7%20v0.4.0-b07f23)](CHANGELOG.md)
+
+</div>
+
+---
+
+Most "leave the cloud" write-ups are opinion pieces. This is the working record of an actual migration: thirty-three architecture decisions with the options weighed and the costs named, every application traced down to its service account and backup, a security architecture rooted in hardware, a hardware bill of materials, and a web console designed against AWS Cloudscape, Google Cloud and the Azure portal — with a tested prototype you can open in a browser.
+
+It also says plainly what has **not** been proven. `docs/09-VALIDATION-STATUS.md` grades every claim as verified, grounded, reasoned or assumed, and lists the eleven assumptions most likely to be wrong. Read that before trusting anything else here.
+
+## At a glance
+
+| | |
+|---|---|
+| **Replaces** | EC2, S3, RDS, Cognito, IAM, Secrets Manager, KMS, Lambda, SQS/SNS, ElastiCache, CloudWatch, X-Ray, ECR, CodePipeline, SageMaker |
+| **Base** | Windows Server 2025 · Hyper-V · Failover Clustering · Storage Spaces Direct · Service Fabric · Active Directory |
+| **Security** | Hardware root of trust, WDAC code integrity, IPsec domain isolation, no standing admin rights, object-locked backups at two sites |
+| **Control** | A web console, a PowerShell module, and a GitOps repository that is the only writer of production |
+| **Targets** | RPO 15 min · RTO 8 h for full site loss · 99.9% · under 10 min from `git push` to signed production deploy |
+| **Exceptions** | Three Linux hosts, each justified by an ADR |
 
 | | |
 |---|---|
 | Owner | Adil Munawar, ML Research & Development |
-| Status | Planning · v0.1.0 · 8 September 2026 |
+| Status | Planning · v0.4.0 · 8 September 2026 |
 | Base | Windows Server 2025 Datacenter · Hyper-V · Failover Clustering · Storage Spaces Direct · Service Fabric · Active Directory |
 | Exceptions | One Linux GPU node · one Linux VM for the Wazuh SIEM manager · OPNsense edge appliances |
 | Control | Web console (custom, .NET 10 + Next.js) · PowerShell/`zdc` CLI · GitOps repo as the single source of truth |
@@ -46,6 +73,15 @@ CHANGELOG.md        every change to the plan, dated, with the reason
 ## How changes happen
 
 Nothing about this platform changes without a commit here. A new component, a removed one, a changed port, a rotated key policy: it is an ADR (`docs/adr/`), a line in `CHANGELOG.md`, and a change in `platform/`. `git log` is the history of why the platform is the way it is.
+
+## Try the console
+
+```bash
+open platform/console/prototype/index.html          # no build, no server, no network
+node platform/console/prototype/tests/run-tests.js  # 65 assertions in headless Chromium
+```
+
+The prototype is static, but the tests are real: axe-core WCAG 2.1 A/AA on every screen, keyboard traversal with actual `Tab` presses, contrast computed from rendered pixels, six viewport widths, and a density suite that asserts a 1366×768 laptop does not spend more than 55% of its screen on chrome.
 
 ## Relationship to other repos
 

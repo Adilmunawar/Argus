@@ -2,6 +2,17 @@
 
 All notable changes to the ZD Cloud plan and platform. Dated, with the reason, because a platform whose history nobody can explain is a platform nobody can safely change.
 
+## [0.4.0] — 2026-09-08
+
+### Added
+- MIT licence, `CONTRIBUTING.md`, GitHub Actions `validate` workflow (GitOps schema, secret scan, console suite, external-URL check), and issue templates for challenging an ADR or reporting a broken assumption.
+- **DENS test suite** — 12 assertions across 1366×768, 1280×800 and 1024×768 asserting that chrome and header stay under 55% of the viewport, all stat tiles clear the fold, and Overview stays under two screens. 65/65 passing.
+
+### Changed
+- **Compact density for small-screen laptops**, keyed to viewport *height* rather than width because vertical space is the real constraint on a 1366×768 machine. Below 860px tall, and again below 720px, the whole interface tightens. First card of content on a 1366×768 laptop moves from 445px to 384px; the Overview page from 1126px to 1004px. A 1440×900 screen is untouched.
+- Tile grid holds four columns down to 1000px instead of 1200px — the earlier breakpoint forced a second row of tiles at 1024×768 and cost 110px of vertical space.
+- README rewritten for a public audience with badges and an at-a-glance table.
+
 ## [0.3.0] — 2026-09-08
 
 ### Added
