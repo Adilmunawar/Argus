@@ -2,6 +2,21 @@
 
 All notable changes to the ZD Cloud plan and platform. Dated, with the reason, because a platform whose history nobody can explain is a platform nobody can safely change.
 
+## [0.3.0] — 2026-09-08
+
+### Added
+- `docs/11-CONSOLE-UX-BENCHMARK-AND-BUGS.md` — AWS Cloudscape, Google Cloud and Azure benchmarked component by component with a verdict on each; the test suite; the full bug register; the fix plan.
+- `platform/console/prototype/tests/run-tests.js` — headless-Chromium suite, 9 suites and 51 assertions: axe-core WCAG 2.1 A/AA per screen, real Tab-key focus traversal, contrast from rendered colours, four viewports, touch targets, reduced motion, console errors. Exit code is the failure count so CI can gate on it.
+
+### Changed
+- Console prototype rewritten as v2: collapsible rail (Cloudscape app layout / GCP), flashbar, property-filter tokens, breadcrumbs, skip link, live region, `aria-current`, focus-managed navigation.
+- **Minimum font size raised from 10px to 11px** — a deliberate, recorded deviation from the Mills design system, because this console is read under pressure.
+
+### Fixed
+- **B1/B2 (critical)** — the console was 755px wide on a 390px phone and unusable. Rail collapses at 1200px, drawer at 900px, top bar wraps at 620px; content column changed to `minmax(0,1fr)` because grid items default to `min-width:auto`.
+- **B3–B13** — ten click handlers on non-focusable spans; no focus ring outside `.btn`; a Google Fonts fetch that would have failed behind the egress allow-list (ADR-0027); `.delta.up` at 3.73:1; `opacity`-based disabled state; wrapped status pills; 15px touch targets; missing table captions and scopes; no skip link, live region or title changes.
+- **T1–T5** — five defects in the test harness itself, which had produced fourteen false failures. Recorded in the bug register beside the real ones.
+
 ## [0.2.0] — 2026-09-08
 
 ### Added

@@ -23,6 +23,7 @@
 9. [`docs/08-OPEN-QUESTIONS.md`](docs/08-OPEN-QUESTIONS.md) — decisions still needed from the owner.
 10. **[`docs/09-VALIDATION-STATUS.md`](docs/09-VALIDATION-STATUS.md) — what is actually tested and what is not. Read this before trusting any of the above.**
 11. [`docs/10-CONSOLE-DESIGN.md`](docs/10-CONSOLE-DESIGN.md) — the web console: every screen, including browser RDP. Open [`platform/console/prototype/index.html`](platform/console/prototype/index.html) in a browser to see it.
+12. [`docs/11-CONSOLE-UX-BENCHMARK-AND-BUGS.md`](docs/11-CONSOLE-UX-BENCHMARK-AND-BUGS.md) — AWS/GCP/Azure benchmark, the test suite, every bug found and the fix plan. `node platform/console/prototype/tests/run-tests.js` — currently 51/51.
 
 ## Before you buy anything
 
