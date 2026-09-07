@@ -197,7 +197,7 @@ const rec = (suite, id, pass, detail) => results.push({ suite, id, pass, detail 
   await motionCtx.close();
 
   // ---------- RESP + TAP + screenshots ----------
-  for (const [w, h, name] of [[1440, 900, 'desktop'], [1024, 768, 'laptop'], [768, 1024, 'tablet'], [390, 844, 'phone']]) {
+  for (const [w, h, name] of [[1440, 900, 'desktop'], [1366, 768, 'laptop-1366'], [1280, 800, 'laptop-1280'], [1024, 768, 'small-laptop'], [768, 1024, 'tablet'], [390, 844, 'phone']]) {
     const c = await browser.newContext({ viewport: { width: w, height: h } });
     const p2 = await c.newPage();
     await p2.goto(URL, { waitUntil: 'load' });
@@ -215,6 +215,31 @@ const rec = (suite, id, pass, detail) => results.push({ suite, id, pass, detail 
     });
     rec('RESP', `${name} (${w}px) no horizontal overflow`, overflow.doc <= overflow.view + 1,
       `scrollWidth ${overflow.doc} vs ${overflow.view}${overflow.wide.length ? ' — ' + overflow.wide.join(' | ') : ''}`);
+
+    // DENSITY — the constraint on a small laptop is vertical. Chrome plus the
+    // page header must not eat the screen before the first card of content.
+    if (h <= 800) {
+      const d = await p2.evaluate(() => {
+        const vh = window.innerHeight;
+        const card = document.querySelector('#overview .card');
+        const tiles = [...document.querySelectorAll('#overview .tile')];
+        return {
+          vh,
+          firstCardTop: card ? Math.round(card.getBoundingClientRect().top) : null,
+          lastTileBottom: tiles.length ? Math.round(tiles[tiles.length - 1].getBoundingClientRect().bottom) : null,
+          pageHeight: document.documentElement.scrollHeight
+        };
+      });
+      const budget = Math.round(d.vh * 0.55);
+      rec('DENS', `${name} first card clears the fold`, d.firstCardTop !== null && d.firstCardTop < d.vh,
+        `card at ${d.firstCardTop}px of ${d.vh}px`);
+      rec('DENS', `${name} chrome + header under 55% of the screen`, d.firstCardTop <= budget,
+        `${d.firstCardTop}px used, budget ${budget}px`);
+      rec('DENS', `${name} all stat tiles above the fold`, d.lastTileBottom <= d.vh,
+        `tiles end at ${d.lastTileBottom}px of ${d.vh}px`);
+      rec('DENS', `${name} overview under 2 screens tall`, d.pageHeight <= d.vh * 2,
+        `${d.pageHeight}px = ${(d.pageHeight / d.vh).toFixed(1)} screens`);
+    }
 
     if (w <= 768) {
       const small = await p2.evaluate(() => {
