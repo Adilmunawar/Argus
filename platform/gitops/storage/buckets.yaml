@@ -32,3 +32,8 @@ buckets:
     owner: gmsa-loki$
     objectLock: { mode: COMPLIANCE, days: 400 }
     replication: { siteB: true }
+  - name: zd-sessions
+    owner: gmsa-guacamole$      # recorded RDP/SSH sessions (ADR-0032); ~1 GB per RDP hour
+    readers: [gmsa-console$, ZD-Console-Security]
+    objectLock: { mode: COMPLIANCE, days: 400 }
+    replication: { siteB: true }

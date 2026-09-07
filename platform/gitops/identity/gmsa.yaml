@@ -14,4 +14,5 @@ accounts:
   - { name: gmsa-seaweed$,     hosts: [sw-master-01, sw-master-02, sw-master-03, sw-b01], tier: 1 }
   - { name: gmsa-caddy$,       hosts: [sf-*], tier: 1 }
   - { name: gmsa-ci$,          hosts: [runner-01, runner-02], tier: 1, s3: [zd-artifacts:put-only], codesign: true }
+  - { name: gmsa-guacamole$,   hosts: [guac-01], tier: 1, kind: linux-sssd, s3: [zd-sessions:put-only], notes: "receives one-time VM credentials from OpenBao; never stores them" }
   - { name: svc-ml,            hosts: [gpu-01], tier: 1, kind: linux-sssd, s3: [zd-sentinel:rw, zd-ml:rw, zd-rasters:rw] }

@@ -10,3 +10,5 @@
 
 ---
 Index: [`docs/01-DECISIONS.md`](../01-DECISIONS.md)
+
+**Amended 8 September 2026 by ADR-0032:** a third exception, `guac-01` (Apache Guacamole gateway), is accepted. A fourth still requires its own ADR.

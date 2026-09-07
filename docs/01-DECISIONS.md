@@ -37,6 +37,8 @@ Status legend: **Accepted** · Proposed · Superseded by ADR-nnnn
 | [0029](#adr-0029) | ML platform: one Ubuntu GPU node with Ray, MLflow, Dagster; no Kubeflow | Accepted |
 | [0030](#adr-0030) | Mobile-app password scheme is frozen; Keycloak is not adopted; AD FS fronts the web | Accepted |
 | [0031](#adr-0031) | SQL Server recovery model returns to FULL once log backups exist | Proposed |
+| [0032](adr/ADR-0032-browser-rdp-ssh-via-guacamole.md) | Browser RDP/SSH/VM-console via Apache Guacamole, credential-less and recorded | Accepted |
+| [0033](adr/ADR-0033-console-is-primary-wac-retired-at-parity.md) | The console is the primary surface; Windows Admin Center retired at C6 parity | Accepted |
 
 ---
 
@@ -263,3 +265,16 @@ Status legend: **Accepted** · Proposed · Superseded by ADR-nnnn
 **Context.** `umairv3_db` was moved to SIMPLE recovery outside the Mills project in Aug 2026 because the log had grown to 466 GB with no log backups. The owner's standing ruling (D14) was FULL.
 
 **Proposal.** Once ADR-0020's 15-minute log backups are running and proven for two weeks, return to FULL. This restores point-in-time recovery (RPO 15 min instead of "last full"). Requires the owner's ruling because D14 was ruled three times.
+
+
+## ADR-0032 — Browser RDP/SSH/VM-console via Apache Guacamole
+
+Full text: [`adr/ADR-0032-browser-rdp-ssh-via-guacamole.md`](adr/ADR-0032-browser-rdp-ssh-via-guacamole.md).
+
+**Decision.** Apache Guacamole (Apache-2.0, clientless HTML5 gateway for RDP/SSH/VNC) on `guac-01`, embedded in the console's Connect tab. Credentials come from OpenBao as one-time, session-scoped values the operator never sees; every session is time-boxed and recorded to the object-locked `zd-sessions` bucket. **Amends ADR-0003: three Linux exceptions, not two.**
+
+## ADR-0033 — The console is primary; Windows Admin Center retired at parity
+
+Full text: [`adr/ADR-0033-console-is-primary-wac-retired-at-parity.md`](adr/ADR-0033-console-is-primary-wac-retired-at-parity.md).
+
+**Decision.** WAC is a bootstrap and break-glass tool, retired from daily use when console stage C6 lands. Grafana is not retired — the console embeds and links to it rather than rebuilding it.

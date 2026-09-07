@@ -47,6 +47,7 @@ These are the things most likely to be wrong, in the order they will bite:
 | A8 | A 100 Mbps site link carries the steady-state replication | Site B lags; needs more bandwidth |
 | A9 | `.NET 10` / SQL Server 2022 / Windows Server 2025 version combination has no blocking incompatibility | version pin changes |
 | A10 | The reconciler is ~2,000 lines of C# | it is the platform's single point of failure; budget more |
+| A11 | Guacamole's RDP recording, AD auth and OpenBao-injected one-time credentials work together on Windows Server 2025 targets | ADR-0032 weakens to recorded-but-password-typed, or to WAC's RDP; test it in the day-one lab |
 
 ## Not built at all
 
