@@ -1,0 +1,27 @@
+# DSC v3 configuration — Service Fabric node (Server Core, Shielded VM)
+$schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
+resources:
+  - name: features
+    type: Microsoft.Windows/WindowsFeature
+    properties: { names: [NET-Framework-45-Core], ensure: present }
+  - name: wdac
+    type: ZdCloud/WdacPolicy
+    properties: { policyId: zd-base, mode: audit }            # → enforced in Phase 6
+  - name: gpo-membership
+    type: ZdCloud/OuPlacement
+    properties: { ou: "OU=SF,OU=Tier1,OU=Servers,DC=zd,DC=local" }
+  - name: sysmon
+    type: ZdCloud/WinSwService
+    properties: { name: Sysmon64, source: "zd-artifacts/tools/sysmon/15.15/Sysmon64.exe", sha256: "<pinned>", args: "-i C:\\ZdCloud\\policies\\sysmon.xml" }
+  - name: windows-exporter
+    type: ZdCloud/WinSwService
+    properties: { name: windows_exporter, source: "zd-artifacts/tools/windows_exporter/0.30.0/windows_exporter.exe", sha256: "<pinned>", args: "--collectors.enabled=cpu,memory,logical_disk,net,service,process,tcp" }
+  - name: wazuh-agent
+    type: ZdCloud/MsiPackage
+    properties: { source: "zd-artifacts/tools/wazuh/4.13/wazuh-agent.msi", sha256: "<pinned>", args: "WAZUH_MANAGER=siem-01.zd.local" }
+  - name: alloy
+    type: ZdCloud/WinSwService
+    properties: { name: alloy, source: "zd-artifacts/tools/alloy/1.9.0/alloy.exe", sha256: "<pinned>", args: "run C:\\ZdCloud\\alloy\\config.alloy" }
+  - name: servicefabric
+    type: ZdCloud/ServiceFabricNode
+    properties: { cluster: zd-sf-a, nodeType: primary, certThumbprintFrom: "ZD-Issuing-CA:sf-node" }

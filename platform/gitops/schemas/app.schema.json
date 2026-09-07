@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ServiceFabricApp",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "spec"],
+  "properties": {
+    "apiVersion": { "const": "zdcloud/v1" },
+    "kind": { "const": "ServiceFabricApp" },
+    "metadata": { "type": "object", "required": ["name", "owner", "tier"] },
+    "spec": {
+      "type": "object",
+      "required": ["package", "identity", "services", "health"],
+      "properties": {
+        "identity": { "type": "string", "pattern": "^gmsa-[a-z0-9-]+\\$$" },
+        "services": { "type": "array", "minItems": 1, "items": {
+          "type": "object", "required": ["name", "type", "exe", "instances", "endpoints"],
+          "properties": {
+            "env": { "type": "object", "additionalProperties": { "type": "string",
+              "not": { "pattern": "(?i)(password|secret|key)=[^{]" } } }
+          }
+        }}
+      }
+    }
+  }
+}
