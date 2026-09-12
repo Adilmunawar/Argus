@@ -101,7 +101,7 @@ jobs:
 
       - name: Keep the last stress report
         if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: console-stress-report
           path: platform/console/prototype/tests/stress-last-run.json
@@ -110,7 +110,7 @@ jobs:
 
       - name: Keep the screenshots from both suites
         if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: console-screenshots
           path: |
